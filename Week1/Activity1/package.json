@@ -1,0 +1,12 @@
+{
+  "name": "lab1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "In this first activity our objective is to install node.Js from the official node page and we will also execute a script to print a \"Hello world\" message through the console"
+}
