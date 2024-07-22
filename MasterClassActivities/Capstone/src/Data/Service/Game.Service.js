@@ -1,0 +1,35 @@
+import Game from "../../Business/Models/Game.Model.js";
+
+export class GameService{
+    
+    static async findOneGame(id){
+        return await Game.findOne({
+            attributes:{
+                exclude:['updatedAt']
+            },
+            where:{
+                id:id
+            }
+        })
+    }
+    static async findAllGames(){
+        return await Game.findAll()
+    }
+
+    static async updateGame(data,game){
+        return await game.update(data)
+    }
+
+    static async CreateGame(data){
+        return await Game.create(data)
+    }
+
+    static async deleteGame(id){
+        const game = await Game.findByPk(id);
+        if(game){
+            await game.destroy();
+            return game;
+        }
+        return null;
+    }
+}
