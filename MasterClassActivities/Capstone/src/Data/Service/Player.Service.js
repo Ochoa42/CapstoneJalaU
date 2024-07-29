@@ -12,6 +12,24 @@ export class PlayerService{
             }
         })
     }
+
+    static async findOnePlayerRegister(username){
+        return await Player.findOne({
+            where:{
+                username:username
+            }
+        })
+    }
+
+    static async findOneLogin(username,password){
+        return await Player.findOne({
+            where:{
+                username:username,
+                password:password
+            }
+        })
+    }
+
     static async findAllPlayers(){
         return await Player.findAll()
     }

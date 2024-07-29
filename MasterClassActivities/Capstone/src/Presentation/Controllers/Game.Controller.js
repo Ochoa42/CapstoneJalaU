@@ -26,7 +26,10 @@ export const registerGame = catchAsync(async(req,res,next)=>{
         })
     }
     const game = await GameService.CreateGame(gameData)
-    return res.status(200).json(game)
+    return res.status(200).json({
+        message:"Game created successfully",
+        "game_Id":game.id
+    })
 })
 
 

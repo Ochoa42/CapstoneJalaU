@@ -19,7 +19,16 @@ const Player = sequelize.define("players",{
     email:{
         type:DataTypes.STRING,
         allowNull:false
+    },
+    username:{
+        type:DataTypes.STRING(40),
+        allowNull:false
+    },
+    password:{
+        type:DataTypes.STRING(40),
+        allowNull:false
     }
+    
 })
 
 export default Player;

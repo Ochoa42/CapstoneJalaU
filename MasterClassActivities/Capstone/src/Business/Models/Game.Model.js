@@ -22,7 +22,17 @@ const Game = sequelize.define('games',{
     maxPlayers:{
         type:DataTypes.INTEGER,
         allowNull:false
+    },
+    rules:{
+        type:DataTypes.STRING(50),
+        allowNull:false
+    },
+    playerId:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        field:'player_id'
     }
+
 })
 
 export default Game;

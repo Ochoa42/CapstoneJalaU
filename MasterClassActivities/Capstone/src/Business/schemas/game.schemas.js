@@ -14,7 +14,11 @@ const gameSchema = z.object({
     maxPlayers: z.number({
         invalid_type_error: 'maxPlayers must be a number',
         required_error: 'maxPlayers is required'
-    })
+    }),
+    rules:z.string({
+        invalid_type_error: 'rules must be a string',
+        required_error: 'rules is required'
+    }),
 });
 
 

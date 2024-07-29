@@ -3,7 +3,7 @@ import { envs } from "../../config/enviroments/enviroments.js";
 
 export const sequelize = new Sequelize(envs.DB_URL,{
     dialect:'mysql',
-    logging:console.log,
+    logging:false,
     define:{
         timestamps:false,
         freezeTableName:true
@@ -22,7 +22,7 @@ export const authenticated = async()=>{
 export const syncUp = async()=>{
     try{
         await sequelize.sync({
-            /*force:true*/
+            force:true
         });
         console.log("Synced has been Successfull")
     }catch(error){

@@ -1,12 +1,18 @@
 import express from 'express'
-import { deletePlayer, getPlayerId, getPlayers, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
-import { validateExistPlayer } from '../../Business/middleware/player.middleware.js'
+import { deletePlayer, getPlayerId, getPlayers, getUserProfile, loginPlayer, logoutPlayer, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
+import { protect, validateExistPlayer, validateExistPlayerRegister } from '../../Business/middleware/player.middleware.js'
 
 export const router = express.Router()
 
-router.get('/',getPlayers)
-router.post('/register',registerPlayer)
 
+router.post('/register',validateExistPlayerRegister,registerPlayer);
+router.post('/login',loginPlayer);
+router.post('/logout', logoutPlayer);
+
+router.use(protect);
+
+router.get('/',getPlayers)
+router.post('/profile',getUserProfile)
 router
     .route('/:id')
     .get(validateExistPlayer,getPlayerId)
