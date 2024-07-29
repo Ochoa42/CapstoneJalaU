@@ -1,7 +1,9 @@
 import { catchAsync } from "../../Business/errors/cathAsync.js";
 import { generateJWT } from "../../Business/plugins/generate-jwt.plugin.js";
+import { validatePartialGame } from "../../Business/schemas/game.schemas.js";
 import { validatePartialPlayer, validatePlayer } from "../../Business/schemas/player.schema.js";
 import { decodedToken } from "../../config/Utils/DecodedToken.js";
+import { GameService } from "../../Data/Service/Game.Service.js";
 import { PlayerService } from "../../Data/Service/Player.Service.js";
 import { tokenService } from "../../Data/Service/TokenInvalid.Service.js";
 
@@ -53,6 +55,30 @@ export const loginPlayer = catchAsync(async(req,res,next)=>{
         message:"Player is Authenticated Successfuly"
 
     })
+});
+
+export const CreateGame = catchAsync(async(req,res,next)=>{
+
+    const { hasError, errorMessages, gameData } = validatePartialGame(req.body)
+    if(hasError){
+        return res.status(422).json({
+            status:'error',
+            message:errorMessages
+        });
+    }
+
+    const game = await GameService.CreateGame({
+        title: gameData.title,
+        status: gameData.status,
+        maxPlayers: gameData.maxPlayers,
+        rules: gameData.rules,
+        playerId: req.player.id 
+    });
+
+    return res.status(201).json({
+        message: 'Create Game successfuly',
+        game
+    });
 });
 
 

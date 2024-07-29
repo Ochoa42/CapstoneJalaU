@@ -1,5 +1,5 @@
 import express from 'express'
-import { deletePlayer, getPlayerId, getPlayers, getUserProfile, loginPlayer, logoutPlayer, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
+import { CreateGame, deletePlayer, getPlayerId, getPlayers, getUserProfile, loginPlayer, logoutPlayer, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
 import { protect, validateExistPlayer, validateExistPlayerRegister } from '../../Business/middleware/player.middleware.js'
 
 export const router = express.Router()
@@ -19,3 +19,5 @@ router
     .patch(validateExistPlayer,updatePlayer)
     .delete(validateExistPlayer,deletePlayer)
     .put(validateExistPlayer,updatePlayer)
+
+router.post('/createGame',CreateGame)

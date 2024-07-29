@@ -22,7 +22,7 @@ export const authenticated = async()=>{
 export const syncUp = async()=>{
     try{
         await sequelize.sync({
-            force:true
+            /*force:true*/
         });
         console.log("Synced has been Successfull")
     }catch(error){
