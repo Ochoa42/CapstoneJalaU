@@ -5,6 +5,7 @@ import { validatePartialPlayer, validatePlayer } from "../../Business/schemas/pl
 import { decodedToken } from "../../config/Utils/DecodedToken.js";
 import { GameService } from "../../Data/Service/Game.Service.js";
 import { PlayerService } from "../../Data/Service/Player.Service.js";
+import { playerGameService } from "../../Data/Service/PlayerGame.Service.js";
 import { tokenService } from "../../Data/Service/TokenInvalid.Service.js";
 
 export const getPlayers = catchAsync(async(req,res,next)=>{
@@ -77,7 +78,65 @@ export const CreateGame = catchAsync(async(req,res,next)=>{
 
     return res.status(201).json({
         message: 'Create Game successfuly',
-        game
+        game_id: game.id
+    });
+});
+
+
+export const joinGame = catchAsync(async (req, res, next) => {
+    const { game_id, access_token } = req.body;
+
+    if (!game_id || !access_token) {
+        return res.status(400).json({
+            status: 'error',
+            message: 'Game ID and access token are required'
+        });
+    }
+
+    const player = await decodedToken(access_token);
+    if (!player) {
+        return res.status(401).json({
+            status: 'error',
+            message: 'Invalid or expired token'
+        });
+    }
+
+    const playerId = player.id;
+
+    // Verificar si el juego existe
+    const game = await GameService.findOneGame(game_id);
+    if (!game) {
+        return res.status(404).json({
+            status: 'error',
+            message: 'Game not found'
+        });
+    }
+
+    // Verificar si el usuario ya está en el juego
+    const isUserInGame = await playerGameService.findOnePlayerGame(playerId, game.id);
+    if (isUserInGame) {
+        return res.status(400).json({
+            status: 'error',
+            message: 'player is already in the game'
+        });
+    }
+    
+
+    // Agregar al usuario al juego
+    const AddJoinGame = await playerGameService.createPlayerGame({
+        playerId:playerId,
+        gameId:game.id
+    });
+
+    if (!AddJoinGame) {
+        return res.status(500).json({
+            status: 'error',
+            message: 'Failed to add player to the game'
+        });
+    }
+
+    return res.status(200).json({
+        message: 'Player joined the game successfully'
     });
 });
 

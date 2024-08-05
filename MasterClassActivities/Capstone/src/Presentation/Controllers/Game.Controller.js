@@ -1,5 +1,6 @@
 import { catchAsync } from "../../Business/errors/cathAsync.js";
 import { validateGame, validatePartialGame } from "../../Business/schemas/game.schemas.js";
+import { decodedToken } from "../../config/Utils/DecodedToken.js";
 import { GameService } from "../../Data/Service/Game.Service.js";
 
 
@@ -63,3 +64,15 @@ export const deleteGame = catchAsync(async(req,res,next)=>{
         game: deleteGame
     })
 })
+
+export const startGame = catchAsync(async (req, res, next) => {
+    const { game_id, access_token } = req.body;
+    const player = await decodedToken(access_token)
+    const playerId = player.id;
+    try {
+        await GameService.startGame(game_id, playerId);
+        return res.status(200).json({ message: "Game started successfully" });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+});

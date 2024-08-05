@@ -1,6 +1,7 @@
 import express from 'express'
-import { CreateGame, deletePlayer, getPlayerId, getPlayers, getUserProfile, loginPlayer, logoutPlayer, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
+import { CreateGame, deletePlayer, getPlayerId, getPlayers, getUserProfile, joinGame, loginPlayer, logoutPlayer, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
 import { protect, validateExistPlayer, validateExistPlayerRegister } from '../../Business/middleware/player.middleware.js'
+import { startGame } from '../Controllers/Game.Controller.js';
 
 export const router = express.Router()
 
@@ -21,3 +22,5 @@ router
     .put(validateExistPlayer,updatePlayer)
 
 router.post('/createGame',CreateGame)
+router.post('/joinGame',joinGame)
+router.post('/startGame',startGame)

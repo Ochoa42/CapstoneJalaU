@@ -17,7 +17,7 @@ const Game = sequelize.define('games',{
     status:{
         type:DataTypes.ENUM('active', 'inactive'),
         allowNull:false,
-        defaultValue:"active"
+        defaultValue:"inactive"
     },
     maxPlayers:{
         type:DataTypes.INTEGER,

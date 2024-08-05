@@ -1,4 +1,5 @@
 import Game from "../../Business/Models/Game.Model.js";
+import PlayerGame from "../../Business/Models/PlayerGame.Model.js";
 
 export class GameService{
     
@@ -31,5 +32,23 @@ export class GameService{
             return game;
         }
         return null;
+    }
+
+    static async startGame(gameId, playerId) {
+        const game = await Game.findByPk(gameId);
+        if (!game) {
+            throw new Error("Game not found");
+        }
+        if (game.playerId !== playerId) {
+            throw new Error("Player is not the creator of the game");
+        }
+        const players = await PlayerGame.findAll({ where: { gameId } });
+        const allReady = players.every(player => player.is_Ready);
+        if (!allReady) {
+            throw new Error("Not all players are ready");
+        }
+        game.status = 'active';
+        await game.save();
+        return game;
     }
 }

@@ -1,0 +1,689 @@
+{
+	"info": {
+		"_postman_id": "8e0b72be-a1e7-432e-b627-2f7a00e01c20",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36934379"
+	},
+	"item": [
+		{
+			"name": "Game",
+			"item": [
+				{
+					"name": "findOneGame",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/games/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"games",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/games/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"games",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateGame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"la Caperusita Roja\",\r\n    \"status\":\"active\",\r\n    \"maxPlayers\":7,\r\n    \"rules\":\"la primera regla del juego\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/games/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"games",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateGame",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"la centinela encantadora\",\r\n    \"status\":\"active\",\r\n    \"maxPlayers\":8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/games/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"games",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteGame",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/games/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"games",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "findOneCard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllCards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\":\"violeta\",\r\n    \"value\":\"34\",\r\n    \"gameId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCard",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\":\"naranja\",\r\n    \"value\":\"23\",\r\n    \"gameId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Player",
+			"item": [
+				{
+					"name": "findOnePlayer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllPlayers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePlayer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Pablo carlos tomicha\",\r\n    \"age\":23,\r\n    \"email\":\"juancarlostomicha@gmail.com\",\r\n    \"username\":\"silphi223\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePlayer",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Julio\",\r\n    \"age\":34,\r\n    \"email\":\"julioberrea@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePlayer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginPlayer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"silphi123\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikp1bGlhbiBWZWxhcmRlcyBNYW1hbmlzIiwiZW1haWwiOiJqdWxpYW5WZWxhcmRlc21hbWFuaXNAZ21haWwuY29tIiwiaWF0IjoxNzIyMDk4ODg2LCJleHAiOjE3MjIxMjc2ODZ9.0Rhng0oMGSx-9d0EhF7d0d7lxWaOHhRgxpIc6J412nY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikp1bGlhbiBWZWxhcmRlcyBNYW1hbmlzIiwiZW1haWwiOiJqdWxpYW5WZWxhcmRlc21hbWFuaXNAZ21haWwuY29tIiwiaWF0IjoxNzIyMTE0MDc0LCJleHAiOjE3MjIxNDI4NzR9.4jsvSQlZpf3khxL_2-8FRhxEQjeYIMzabI2ezNgrtXc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateGame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"la Caperusita Roja\",\r\n    \"status\":\"active\",\r\n    \"maxPlayers\":7,\r\n    \"rules\":\"la primera regla del juego\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/createGame",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"createGame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JoinGame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"game_id\": 2,\r\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Ikp1YW4gY2FybG9zIHRvbWljaGEiLCJlbWFpbCI6Imp1YW5jYXJsb3N0b21pY2hhQGdtYWlsLmNvbSIsImlhdCI6MTcyMjQ2Mzg3NSwiZXhwIjoxNzIyNDkyNjc1fQ.baxL3H6NXt2r_hdxt9Z2s7BVFmPaXaXWKc0Ahq1MCbk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/joinGame",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"joinGame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StartGame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"game_id\": 2,\r\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ikp1YW4gY2FybG9zIHRvbWljaGEiLCJlbWFpbCI6Imp1YW5jYXJsb3N0b21pY2hhQGdtYWlsLmNvbSIsImlhdCI6MTcyMjc5NTUwNCwiZXhwIjoxNzIyODI0MzA0fQ.iK_zd8s3BhR_sdYGJb2mZe8qqLAJbzit_IOQeVBZWmI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/startGame",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"startGame"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{BearerToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Score",
+			"item": [
+				{
+					"name": "findOneScore",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/scores/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scores",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllScores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/scores/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateScore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"playerId\":1,\r\n    \"gameId\":1,\r\n    \"score\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/scores/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scores",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateScore",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"playerId\":1,\r\n    \"gameId\":1,\r\n    \"score\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/scores/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scores",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteScore",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/scores/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scores",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PlayerGames",
+			"item": [
+				{
+					"name": "GetPlayerGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/playerGame/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"playerGame",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
