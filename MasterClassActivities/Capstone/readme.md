@@ -175,6 +175,12 @@ npm test
 ### PlayerGames
 - `GET`http://localhost:3002/juego/v1/api/playerGame/
 
+
+## Video and Commit
+[Link del videoCapstone](https://drive.google.com/file/d/1Tcgfw1JVxTHppfYLxSZNRirpA8dpXZwU/view?usp=sharing)
+
+[Link del ultimo commit](https://github.com/Ochoa42/CapstoneJalaU/commit/e1f11bb9cdad8dc75f006ec7016af672653b7594)
+
 *Nota*: 
 - before running the app make sure to set the correct environment variables
 - to run in postman first create a player, then log in as this will generate a token. Otherwise it will not give you access to the other endpoints as we work with private routes
