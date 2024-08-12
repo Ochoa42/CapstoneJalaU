@@ -39,6 +39,7 @@ export const protect = catchAsync(async (req, res, next) => {
         token = req.headers.authorization.split(' ')[1];
         console.log("mi token protec",token)
     }
+    console.log("mitoken",token)
     if (!token) {
         return next(new AppError("you are not logged in!. Please login to get access", 401));
     }

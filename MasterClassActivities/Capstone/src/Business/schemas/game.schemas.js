@@ -7,10 +7,6 @@ const gameSchema = z.object({
         invalid_type_error: 'title must be a string',
         required_error: 'title is required'
     }),
-    status: z.enum(['active', 'inactive'], {
-        invalid_type_error: 'status must be either "active" or "inactive"',
-        required_error: 'status is required'
-    }),
     maxPlayers: z.number({
         invalid_type_error: 'maxPlayers must be a number',
         required_error: 'maxPlayers is required'

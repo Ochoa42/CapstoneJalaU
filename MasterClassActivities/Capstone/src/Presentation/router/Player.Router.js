@@ -1,5 +1,5 @@
 import express from 'express'
-import { CreateGame, deletePlayer, getPlayerId, getPlayers, getUserProfile, joinGame, loginPlayer, logoutPlayer, registerPlayer, updatePlayer } from '../Controllers/Player.Controller.js'
+import { CreateGame, deletePlayer, endGame, getPlayerId, getPlayers, getUserProfile, joinGame, loginPlayer, logoutPlayer, registerPlayer, RemovePlayerofGameInProgess, updatePlayer } from '../Controllers/Player.Controller.js'
 import { protect, validateExistPlayer, validateExistPlayerRegister } from '../../Business/middleware/player.middleware.js'
 import { startGame } from '../Controllers/Game.Controller.js';
 
@@ -8,7 +8,6 @@ export const router = express.Router()
 
 router.post('/register',validateExistPlayerRegister,registerPlayer);
 router.post('/login',loginPlayer);
-router.post('/logout', logoutPlayer);
 
 router.use(protect);
 
@@ -21,6 +20,9 @@ router
     .delete(validateExistPlayer,deletePlayer)
     .put(validateExistPlayer,updatePlayer)
 
-router.post('/createGame',CreateGame)
-router.post('/joinGame',joinGame)
-router.post('/startGame',startGame)
+router.post('/createGame',CreateGame);
+router.post('/joinGame',joinGame);
+router.post('/startGame',startGame);
+router.post('/logout', logoutPlayer);
+router.post('/AbandoneGame',RemovePlayerofGameInProgess);
+router.post('/EndGame', endGame);

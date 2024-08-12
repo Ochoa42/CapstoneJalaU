@@ -2,7 +2,7 @@ import request from 'supertest';
 import express from 'express';
 import { sequelize } from '../../src/Data/Database/Connection.js';
 import { router } from '../../src/Presentation/router/Card.Router.js';
-import { CardService } from '../../src/Data/Service/Card.Service.js'; // Asegúrate de que la ruta sea correcta
+import { CardService } from '../../src/Data/Service/Card.Service.js';
 
 const app = express();
 app.use(express.json());
@@ -13,15 +13,15 @@ jest.mock('../../src/Data/Service/Card.Service.js');
 
 describe('Card Controller', () => {
     beforeAll(async () => {
-        await sequelize.sync({ force: true }); // Resetea la base de datos antes de las pruebas
+        await sequelize.sync({ force: true }); 
     });
 
     afterEach(() => {
-        jest.clearAllMocks(); // Limpia los mocks después de cada prueba
+        jest.clearAllMocks();
     });
 
     afterAll(async () => {
-        await sequelize.close(); // Cierra la conexión de la base de datos después de todas las pruebas
+        await sequelize.close(); 
     });
 
     test('POST /cards/register should create a card', async () => {
@@ -81,7 +81,7 @@ describe('Card Controller', () => {
     });
 
     test('POST /cards/register should return 422 if validation fails', async () => {
-        const cardData = { color: "blue" }; // Campos faltantes
+        const cardData = { color: "blue" }; 
         const response = await request(app)
             .post('/cards/register')
             .send(cardData);

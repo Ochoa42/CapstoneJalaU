@@ -1,12 +1,12 @@
 import request from 'supertest';
 import express from 'express';
 import { sequelize } from '../../src/Data/Database/Connection.js';
-import { router } from '../../src/Presentation/router/Player.Router.js'; // Ajusta la ruta según tu estructura de proyecto
-import { PlayerService } from '../../src/Data/Service/Player.Service.js'; // Asegúrate de que la ruta sea correcta
-import { GameService } from '../../src/Data/Service/Game.Service.js'; // Para pruebas relacionadas con juegos
-import { playerGameService } from '../../src/Data/Service/PlayerGame.Service.js'; // Para pruebas relacionadas con la unión de juegos
-import { tokenService } from '../../src/Data/Service/TokenInvalid.Service.js'; // Para pruebas relacionadas con la invalidación de tokens
-import { generateJWT } from '../../src/Business/plugins/generate-jwt.plugin.js'; // Para pruebas relacionadas con la autenticación
+import { router } from '../../src/Presentation/router/Player.Router.js'; 
+import { PlayerService } from '../../src/Data/Service/Player.Service.js'; 
+import { GameService } from '../../src/Data/Service/Game.Service.js'; 
+import { playerGameService } from '../../src/Data/Service/PlayerGame.Service.js'; 
+import { tokenService } from '../../src/Data/Service/TokenInvalid.Service.js';
+import { generateJWT } from '../../src/Business/plugins/generate-jwt.plugin.js'; 
 
 const app = express();
 app.use(express.json());
@@ -21,15 +21,15 @@ jest.mock('../../src/Business/plugins/generate-jwt.plugin.js');
 
 describe('Player Controller', () => {
     beforeAll(async () => {
-        await sequelize.sync({ force: true }); // Resetea la base de datos antes de las pruebas
+        await sequelize.sync({ force: true }); 
     });
 
     afterEach(() => {
-        jest.clearAllMocks(); // Limpia los mocks después de cada prueba
+        jest.clearAllMocks(); 
     });
 
     afterAll(async () => {
-        await sequelize.close(); // Cierra la conexión de la base de datos después de todas las pruebas
+        await sequelize.close(); 
     });
 
     test('POST /players/register should register a new player', async () => {
@@ -87,7 +87,7 @@ describe('Player Controller', () => {
         const response = await request(app)
             .post('/players/createGame')
             .send(gameData)
-            .set('Authorization', 'Bearer valid-token'); // Simula la autenticación
+            .set('Authorization', 'Bearer valid-token'); 
 
         expect(response.status).toBe(201);
         expect(response.body.game_id).toBe(1);
@@ -104,7 +104,7 @@ describe('Player Controller', () => {
 
         decodedToken.mockResolvedValue(player);
         GameService.findOneGame.mockResolvedValue(game);
-        playerGameService.findOnePlayerGame.mockResolvedValue(null); // El jugador no está en el juego
+        playerGameService.findOnePlayerGame.mockResolvedValue(null); 
         playerGameService.createPlayerGame.mockResolvedValue(playerGame);
 
         const response = await request(app)
@@ -156,7 +156,7 @@ describe('Player Controller', () => {
         const response = await request(app)
             .patch('/players/1')
             .send(playerData)
-            .set('Authorization', 'Bearer valid-token'); // Simula la autenticación
+            .set('Authorization', 'Bearer valid-token'); 
 
         expect(response.status).toBe(200);
         expect(response.body.name).toBe("John Updated");
@@ -168,14 +168,14 @@ describe('Player Controller', () => {
 
         const response = await request(app)
             .delete('/players/1')
-            .set('Authorization', 'Bearer valid-token'); // Simula la autenticación
+            .set('Authorization', 'Bearer valid-token');
 
         expect(response.status).toBe(200);
         expect(response.body.message).toBe('Player delete successfully');
     });
 
     test('POST /players/register should return 422 if validation fails', async () => {
-        const playerData = { name: "John Doe", age: 25 }; // Campos faltantes
+        const playerData = { name: "John Doe", age: 25 };
         const response = await request(app)
             .post('/players/register')
             .send(playerData);
@@ -185,7 +185,7 @@ describe('Player Controller', () => {
     });
 
     test('POST /players/joinGame should return 400 if game_id or access_token is missing', async () => {
-        const gameData = { game_id: 1 }; // access_token faltante
+        const gameData = { game_id: 1 }; 
         const response = await request(app)
             .post('/players/joinGame')
             .send(gameData);
@@ -200,7 +200,7 @@ describe('Player Controller', () => {
             access_token: "valid-token"
         };
         decodedToken.mockResolvedValue({ id: 1 });
-        GameService.findOneGame.mockResolvedValue(null); // El juego no existe
+        GameService.findOneGame.mockResolvedValue(null);
 
         const response = await request(app)
             .post('/players/joinGame')
@@ -215,8 +215,7 @@ describe('Player Controller', () => {
             game_id: 1,
             access_token: "invalid-token"
         };
-        decodedToken.mockResolvedValue(null); // Token no válido
-
+        decodedToken.mockResolvedValue(null); 
         const response = await request(app)
             .post('/players/joinGame')
             .send(gameData);

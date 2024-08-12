@@ -16,12 +16,10 @@ const PlayerGame = sequelize.define("playersGames",{
     playerId:{
         type:DataTypes.INTEGER,
         allowNull:false,
-        field:'player_Id'
     },
     gameId:{
         type:DataTypes.INTEGER,
         allowNull:false,
-        field:'game_Id'
     }
     
 })

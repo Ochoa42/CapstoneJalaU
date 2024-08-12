@@ -219,4 +219,63 @@ export const deletePlayer = catchAsync(async(req,res,next)=>{
         message:'Player delete successfully',
         player:playerDelete
     });
-})
+});
+
+export const RemovePlayerofGameInProgess = catchAsync(async(req,res,next)=>{
+    const { game_id, access_token } = req.body;
+    const game = await GameService.findOneGame(game_id);
+    if (!game || game.status !== "active") {
+        return res.status(400).json({ message: "Game does not exist or is not in progress" });
+    }
+    const player = await decodedToken(access_token);
+    if (!player) {
+        return res.status(400).json({ message: "Player does not exist or token is invalid" });
+    }
+    const gamePlayer = await playerGameService.findOnePlayerGame(player.id, game.id);
+    if (!gamePlayer) {
+        return res.status(400).json({ message: "Player is not part of the game" });
+    }
+    await playerGameService.DeleteGamePlayer(player.id, game.id);
+    return res.status(200).json({ message: "User left the game successfully" });
+});
+
+
+export const endGame = catchAsync(async (req, res, next) => {
+    const { game_id, access_token } = req.body;
+    if (!game_id || !access_token) {
+        return res.status(400).json({
+            status: 'error',
+            message: 'Game ID and access token are required'
+        });
+    }
+    const player = await decodedToken(access_token);
+    if (!player) {
+        return res.status(401).json({
+            status: 'error',
+            message: 'Invalid or expired token'
+        });
+    }
+    const game = await GameService.findOneGame(game_id);
+    if (!game) {
+        return res.status(404).json({
+            status: 'error',
+            message: 'Game not found'
+        });
+    }
+    if (game.status !== "active") {
+        return res.status(400).json({
+            status: 'error',
+            message: 'Game is not in progress'
+        });
+    }
+    if (game.playerId !== player.id) {
+        return res.status(403).json({
+            status: 'error',
+            message: 'You are not authorized to end this game'
+        });
+    }
+    await GameService.updateGame({ status: 'inactive' },game);
+    return res.status(200).json({
+        message: 'Game ended successfully'
+    });
+});

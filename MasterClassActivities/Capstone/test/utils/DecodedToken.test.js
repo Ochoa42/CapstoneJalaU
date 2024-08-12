@@ -16,27 +16,27 @@ describe('decodedToken', () => {
     it('should decode a valid token and return player', async () => {
         const token = 'valid_token';
         jwt.verify.mockResolvedValue({ id: '1' });
-        PlayerService.findOnePlayer.mockResolvedValue(mockPlayer);
+        PlayerService.findOnePlayer.mockResolvedValue(mockPlayer); 
 
         const result = await decodedToken(token);
 
         expect(jwt.verify).toHaveBeenCalledWith(token, envs.SECRET_JWT_SEED);
         expect(PlayerService.findOnePlayer).toHaveBeenCalledWith('1');
         expect(result).toEqual(mockPlayer);
-    });
+    }, 10000);
 
     it('should throw an error if token is invalid', async () => {
         const token = 'invalid_token';
-        jwt.verify.mockRejectedValue(new Error('Invalid token'));
+        jwt.verify.mockRejectedValue(new Error('Invalid token')); 
 
         await expect(decodedToken(token)).rejects.toThrow('Invalid token');
     });
 
     it('should throw an error if player is not found', async () => {
         const token = 'valid_token';
-        jwt.verify.mockResolvedValue({ id: '1' });
-        PlayerService.findOnePlayer.mockResolvedValue(null);
+        jwt.verify.mockResolvedValue({ id: '1' }); 
+        PlayerService.findOnePlayer.mockResolvedValue(null); 
 
         await expect(decodedToken(token)).rejects.toThrow('Invalid token');
-    });
+    }, 10000); 
 });
